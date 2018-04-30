@@ -31,13 +31,6 @@ public class ExpectedOutputTest {
         freemarker.setup();
         assertOutput(freemarker.benchmark());
     }
-    
-    @Test
-    public void testRockerOutput() throws IOException, TemplateException {
-        Rocker rocker = new Rocker();
-        rocker.setup();
-        assertOutput(rocker.benchmark());
-    }
 
     @Test
     public void testPebbleOutput() throws IOException, PebbleException {
@@ -79,6 +72,13 @@ public class ExpectedOutputTest {
         Handlebars hbs = new Handlebars();
         hbs.setup();
         assertOutput(hbs.benchmark());
+    }
+
+    @Test
+    public void testTemplateOutput() throws IOException {
+   	 TemplateBenchmark t = new TemplateBenchmark();
+   	 t.setup();
+   	 assertOutput(t.benchmark());
     }
 
     private void assertOutput(final String output) throws IOException {
