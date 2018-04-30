@@ -384,6 +384,7 @@ public class Template {
 		String itemName;
 		Expression items;
 		Block body;
+		Map<String, Object> scope = new HashMap<String, Object>();
 
 		public ForBlock (String itemName, Expression items, int start, int end) {
 			super(start, end);
@@ -395,8 +396,8 @@ public class Template {
 		public void render (TemplateContext ctx, StringBuilder out) {
 			Object iterable = items.evaluate(ctx);
 			if (!(iterable instanceof Iterable || iterable.getClass().isArray())) throw new RuntimeException("Source in for loop must be of type Iterable.");
-			ctx.push();
-			Map<String, Object> scope = ctx.getScope();
+			scope.clear();
+			ctx.push(scope);
 			if (!iterable.getClass().isArray()) {
 				for (Object item : (Iterable)iterable) {
 					scope.put(itemName, item);
@@ -467,7 +468,7 @@ public class Template {
 		final List<Map<String, Object>> symbols = new ArrayList<Map<String, Object>>();
 
 		public TemplateContext () {
-			push();
+			push(new HashMap<String, Object>());
 		}
 
 		public void set (String name, Object value) {
@@ -483,8 +484,8 @@ public class Template {
 			return null;
 		}
 
-		void push () {
-			symbols.add(new HashMap<String, Object>(16));
+		void push (Map<String, Object> scope) {
+			symbols.add(scope);
 		}
 
 		Map<String, Object> getScope () {

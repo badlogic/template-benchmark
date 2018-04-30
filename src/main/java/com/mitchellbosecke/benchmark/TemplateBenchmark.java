@@ -42,8 +42,8 @@ public class TemplateBenchmark extends BaseBenchmark {
 	@Benchmark
 	public String benchmark() {
 		Template.TemplateContext ctx = new Template.TemplateContext();
-      ctx.set("items", views);
-      return template.render(ctx);
+	   ctx.set("items", views);
+	   return template.render(ctx);
 	}
 
 	class StockView {
@@ -54,19 +54,45 @@ public class TemplateBenchmark extends BaseBenchmark {
 
       public final boolean last;
 
-      public final Stock value;
-
       public final String negativeClass;
 
       public final String rowClass;
+
+      private String name;
+
+      private String name2;
+
+      private String url;
+
+      private String symbol;
+
+      private double price;
+
+      private double change;
+
+      private double ratio;
 
       public StockView(int index, boolean first, boolean last, Stock value) {
           this.index = index;
           this.first = first;
           this.last = last;
-          this.value = value;
           this.negativeClass = value.getChange() > 0 ? "" : "class=\"minus\"";
           this.rowClass = index % 2 == 0 ? "even" : "odd";
+          this.name = value.getName();
+          this.name2 = value.getName2();
+          this.url = value.getUrl();
+          this.symbol = value.getSymbol();
+          this.price = value.getPrice();
+          this.change = value.getChange();
+          this.ratio = value.getRatio();
       }
   }
+
+	public static void main (String[] args) throws IOException {
+		TemplateBenchmark b = new TemplateBenchmark();
+		b.setup();
+		while(true) {
+			b.benchmark();
+		}
+	}
 }

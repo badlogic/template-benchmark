@@ -57,16 +57,16 @@
     		<tr class="{{item.rowClass}}">
      			<td>{{item.index}}</td>
     			<td>
-      				<a href="/stocks/{{item.value.symbol}}">{{item.value.symbol}}</a>
+      				<a href="/stocks/{{item.symbol}}">{{item.symbol}}</a>
      			</td>
      			<td>
-      				<a href="{{item.value.url}}">{{item.value.name}}</a>
+      				<a href="{{item.url}}">{{item.name}}</a>
      			</td>
      			<td>
-      				<strong>{{item.value.price}}</strong>
+      				<strong>{{item.price}}</strong>
      			</td>
-			     <td {{item.negativeClass}}>{{item.value.change}}</td>
-			     <td {{item.negativeClass}}>{{item.value.ratio}}</td>
+			     <td {{item.negativeClass}}>{{item.change}}</td>
+			     <td {{item.negativeClass}}>{{item.ratio}}</td>
     		</tr>
 			{{#end}}
    		</tbody>
