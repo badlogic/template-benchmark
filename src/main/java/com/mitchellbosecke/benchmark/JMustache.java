@@ -1,6 +1,8 @@
 package com.mitchellbosecke.benchmark;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.AbstractCollection;
@@ -11,30 +13,18 @@ import java.util.Map;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Setup;
 
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.MustacheException;
-import com.github.mustachejava.MustacheFactory;
 import com.mitchellbosecke.benchmark.model.Stock;
+import com.samskivert.mustache.Mustache;
 
-public class Mustache extends BaseBenchmark {
+public class JMustache extends BaseBenchmark {
 
-    private com.github.mustachejava.Mustache template;
+    private com.samskivert.mustache.Template template;
 
     @Setup
-    public void setup() {
-        MustacheFactory mustacheFactory = new DefaultMustacheFactory() {
-
-            @Override
-            public void encode(String value, Writer writer) {
-                // Disable HTML escaping
-                try {
-                    writer.write(value);
-                } catch (IOException e) {
-                    throw new MustacheException(e);
-                }
-            }
-        };
-        template = mustacheFactory.compile("templates/stocks.mustache.html");
+    public void setup() throws IOException {
+    	try (Reader reader = new InputStreamReader(JMustache.class.getResourceAsStream("/templates/stocks.mustache.html"))) {
+    		template = Mustache.compiler().escapeHTML(false).compile(reader);
+    	}
     }
 
     @SuppressWarnings("unchecked")
@@ -45,7 +35,7 @@ public class Mustache extends BaseBenchmark {
         data.put("items", new StockCollection((Collection<Stock>) data.get("items")));
 
         Writer writer = new StringWriter();
-        template.execute(writer, data);
+        template.execute(data, writer);
         return writer.toString();
     }
 
