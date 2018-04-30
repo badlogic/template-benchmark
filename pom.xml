@@ -25,6 +25,7 @@
 		<hbs.version>4.0.1</hbs.version>
 		<rocker.version>0.10.3</rocker.version>
 		<jmustache.version>1.14</jmustache.version>
+		<reflectasm.version>1.11.3</reflectasm.version>
 	</properties>
 
 	<licenses>
@@ -174,6 +175,12 @@
 			<groupId>com.samskivert</groupId>
 			<artifactId>jmustache</artifactId>
 			<version>${jmustache.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.esotericsoftware</groupId>
+			<artifactId>reflectasm</artifactId>
+			<version>${reflectasm.version}</version>
 		</dependency>
 
 	</dependencies>

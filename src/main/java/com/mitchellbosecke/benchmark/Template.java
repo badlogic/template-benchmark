@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.esotericsoftware.reflectasm.FieldAccess;
+
 public class Template {
 	private final String template;
 	private final List<TemplatePart> parts;
@@ -286,7 +288,8 @@ public class Template {
 			out.append(val);
 		}
 
-		static Map<Class, Map<String, Field>> fieldCache = new ConcurrentHashMap<Class, Map<String, Field>>();
+		static Map<Class, FieldAccess> fieldAccessCache = new ConcurrentHashMap<Class, FieldAccess>();
+		static Map<Class, Map<String, Integer>> fieldCache = new ConcurrentHashMap<Class, Map<String, Integer>>();
 
 		Object evaluate (TemplateContext ctx) {
 			Object val = ctx.get(value);
@@ -299,26 +302,32 @@ public class Template {
 			for (int i = 1; i < parts.length; i++) {
 				try {
 					Class cls = val.getClass();
-					Field field = null;
+					String fieldName = parts[i];
+					Integer fieldIndex = null;
 
-					Map<String, Field> cachedClass = fieldCache.get(cls);
+					Map<String, Integer> cachedClass = fieldCache.get(cls);
 					if (cachedClass != null) {
-						field = cachedClass.get(parts[i]);
+						fieldIndex = cachedClass.get(fieldName);
 					}
 
-					if (field == null) {
-						field = cls.getDeclaredField(parts[i]);
-						field.setAccessible(true);
+					FieldAccess access = fieldAccessCache.get(cls);
+					if (access == null) {
+						access = FieldAccess.get(cls);
+						fieldAccessCache.put(cls, access);
+					}
+
+					if (fieldIndex == null) {
+						fieldIndex = access.getIndex(fieldName);
 
 						if (cachedClass == null) {
-							cachedClass = new ConcurrentHashMap<String, Field>();
+							cachedClass = new ConcurrentHashMap<String, Integer>();
 							fieldCache.put(cls, cachedClass);
 						}
 
-						cachedClass.put(parts[i], field);
+						cachedClass.put(parts[i], fieldIndex);
 					}
 
-					val = field.get(val);
+					val = access.get(val, fieldIndex);
 
 				} catch (Throwable e) {
 					throw new RuntimeException("Can't access field " + value + " in expression " + value, e);

@@ -59,19 +59,19 @@ public class TemplateBenchmark extends BaseBenchmark {
 
 		public final String rowClass;
 
-		private String name;
+		public String name;
 
-		private String name2;
+		public String name2;
 
-		private String url;
+		public String url;
 
-		private String symbol;
+		public String symbol;
 
-		private double price;
+		public double price;
 
-		private double change;
+		public double change;
 
-		private double ratio;
+		public double ratio;
 
 		public StockView(int index, boolean first, boolean last, Stock value) {
 			this.index = index;
