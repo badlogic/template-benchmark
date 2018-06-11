@@ -1,4 +1,4 @@
-template-benchmark
+javtemplate-benchmark
 ================
 
 JMH benchmark for popular Java template engines:

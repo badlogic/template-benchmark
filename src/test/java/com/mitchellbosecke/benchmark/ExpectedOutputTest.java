@@ -88,6 +88,13 @@ public class ExpectedOutputTest {
    	 assertOutput(t.benchmark());
     }
 
+    @Test
+    public void testBasisOutput() throws IOException {
+   	 BasisTemplate t = new BasisTemplate();
+   	 t.setup();
+   	 assertOutput(t.benchmark());
+    }
+
     private void assertOutput(final String output) throws IOException {
         assertEquals(readExpectedOutputResource(), output.replaceAll("\\s", ""));
     }

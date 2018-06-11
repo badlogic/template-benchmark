@@ -26,6 +26,7 @@
 		<rocker.version>0.10.3</rocker.version>
 		<jmustache.version>1.14</jmustache.version>
 		<reflectasm.version>1.11.3</reflectasm.version>
+		<basistemplate.version>1.0-SNAPSHOT</basistemplate.version>
 	</properties>
 
 	<licenses>
@@ -123,6 +124,11 @@
 		</dependency>
 
 		<!-- template engines -->
+		<dependency>
+			<groupId>io.marioslab.basis</groupId>
+			<artifactId>template</artifactId>
+			<version>${basistemplate.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.mitchellbosecke</groupId>
 			<artifactId>pebble</artifactId>
