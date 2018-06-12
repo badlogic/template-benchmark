@@ -15,7 +15,7 @@ import org.openjdk.jmh.annotations.Warmup;
 
 import com.mitchellbosecke.benchmark.model.Stock;
 
-@Fork(5)
+@Fork(2)
 @Warmup(iterations = 5)
 @Measurement(iterations = 10)
 @BenchmarkMode(Mode.Throughput)

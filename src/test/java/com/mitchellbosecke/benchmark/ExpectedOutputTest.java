@@ -82,13 +82,6 @@ public class ExpectedOutputTest {
     }
 
     @Test
-    public void testTemplateOutput() throws IOException {
-   	 TemplateBenchmark t = new TemplateBenchmark();
-   	 t.setup();
-   	 assertOutput(t.benchmark());
-    }
-
-    @Test
     public void testJwtigOutput() throws IOException {
    	 JTwig t = new JTwig();
    	 t.setup();
