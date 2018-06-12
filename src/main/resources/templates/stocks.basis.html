@@ -54,7 +54,7 @@
    		</thead>
    		<tbody>
 			{{ for index, item in items }}
-				<tr class="{{ if (index + 1) % 2 == 0 }}even{{ else }}odd{{ end }}">
+				<tr class="{{ (index + 1) % 2 == 0 ? "even" : "odd" }}">
 			    	<td>{{index + 1}}</td>
 			    	<td>
 			    		<a href="/stocks/{{ item.symbol }}">{{item.symbol}}</a>
