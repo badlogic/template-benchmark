@@ -89,9 +89,18 @@ public class ExpectedOutputTest {
     }
 
     @Test
+    public void testJwtigOutput() throws IOException {
+   	 JTwig t = new JTwig();
+   	 t.setup();
+   	 System.out.println(t.benchmark());
+   	 assertOutput(t.benchmark());
+    }
+
+    @Test
     public void testBasisOutput() throws IOException {
    	 BasisTemplate t = new BasisTemplate();
    	 t.setup();
+   	 System.out.println(t.benchmark());
    	 assertOutput(t.benchmark());
     }
 

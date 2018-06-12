@@ -27,7 +27,15 @@
 		<jmustache.version>1.14</jmustache.version>
 		<reflectasm.version>1.11.3</reflectasm.version>
 		<basistemplate.version>1.0-SNAPSHOT</basistemplate.version>
+		<jtwig.version>5.87.0.RELEASE</jtwig.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<url>https://jcenter.bintray.com/</url>
+		</repository>
+	</repositories>
 
 	<licenses>
 		<license>
@@ -124,6 +132,11 @@
 		</dependency>
 
 		<!-- template engines -->
+		<dependency>
+			<groupId>org.jtwig</groupId>
+			<artifactId>jtwig-core</artifactId>
+			<version>${jtwig.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>io.marioslab.basis</groupId>
 			<artifactId>template</artifactId>
