@@ -104,6 +104,14 @@ public class ExpectedOutputTest {
    	 assertOutput(t.benchmark());
     }
 
+    @Test
+    public void testBasisGettersOutput() throws IOException {
+   	 BasisTemplateGetters t = new BasisTemplateGetters();
+   	 t.setup();
+   	 System.out.println(t.benchmark());
+   	 assertOutput(t.benchmark());
+    }
+
     private void assertOutput(final String output) throws IOException {
         assertEquals(readExpectedOutputResource(), output.replaceAll("\\s", ""));
     }
