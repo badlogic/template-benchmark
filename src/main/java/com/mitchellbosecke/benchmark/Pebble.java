@@ -1,3 +1,4 @@
+
 package com.mitchellbosecke.benchmark;
 
 import com.mitchellbosecke.pebble.PebbleEngine;
@@ -12,22 +13,28 @@ import java.util.Map;
 
 public class Pebble extends BaseBenchmark {
 
-    private Map<String, Object> context;
+	private Map<String, Object> context;
 
-    private PebbleTemplate template;
+	private PebbleTemplate template;
 
-    @Setup
-    public void setup() throws PebbleException {
-        PebbleEngine engine = new PebbleEngine.Builder().autoEscaping(false).build();
-        template = engine.getTemplate("templates/stocks.pebble.html");
-        this.context = getContext();
-    }
+	@Setup
+	public void setup () throws PebbleException {
+		PebbleEngine engine = new PebbleEngine.Builder().autoEscaping(false).build();
+		template = engine.getTemplate("templates/stocks.pebble.html");
+		this.context = getContext();
+	}
 
-    @Benchmark
-    public String benchmark() throws PebbleException, IOException {
-        StringWriter writer = new StringWriter();
-        template.evaluate(writer, context);
-        return writer.toString();
-    }
+	@Benchmark
+	public String benchmark () throws PebbleException, IOException {
+		StringWriter writer = new StringWriter();
+		template.evaluate(writer, context);
+		return writer.toString();
+	}
 
+	public static void main (String[] args) throws IOException, PebbleException {
+		Pebble b = new Pebble();
+		b.setup();
+		while (true)
+			b.benchmark();
+	}
 }
