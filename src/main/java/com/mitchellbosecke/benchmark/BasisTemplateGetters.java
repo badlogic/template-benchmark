@@ -10,7 +10,7 @@ import com.mitchellbosecke.benchmark.model.Stock;
 
 import io.marioslab.basis.template.TemplateContext;
 import io.marioslab.basis.template.TemplateLoader;
-import io.marioslab.basis.template.TemplateLoader.ResourceTemplateLoader;
+import io.marioslab.basis.template.TemplateLoader.ClasspathTemplateLoader;
 
 public class BasisTemplateGetters extends BaseBenchmark {
 	io.marioslab.basis.template.Template template;
@@ -18,7 +18,7 @@ public class BasisTemplateGetters extends BaseBenchmark {
 
 	@Setup
 	public void setup() throws IOException {
-		TemplateLoader loader = new ResourceTemplateLoader();
+		TemplateLoader loader = new ClasspathTemplateLoader();
 
 		template = loader.load("/templates/stocks.basis.getters.html");
 		items = Stock.dummyItems();
