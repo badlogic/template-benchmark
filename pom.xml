@@ -15,18 +15,17 @@
 		<jmh.version>1.21</jmh.version>
 		<uberjar.name>benchmarks</uberjar.name>
 
-		<pebble.version>2.2.0</pebble.version>
-		<mustache.version>0.9.1</mustache.version>
-		<freemarker.version>2.3.23</freemarker.version>
+		<pebble.version>2.4.0</pebble.version>
+		<mustache.version>0.9.5</mustache.version>
+		<freemarker.version>2.3.28</freemarker.version>
 		<velocity.version>1.7</velocity.version>
-		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
+		<thymeleaf.version>2.1.6.RELEASE</thymeleaf.version>
 		<junit.version>4.12</junit.version>
-		<trimou.version>1.8.2.Final</trimou.version>
-		<hbs.version>4.0.1</hbs.version>
+		<trimou.version>2.5.0.Final</trimou.version>
+		<hbs.version>4.1.0</hbs.version>
 		<rocker.version>0.24.0</rocker.version>
 		<rocker.javaVersion>1.7</rocker.javaVersion>
 		<jmustache.version>1.14</jmustache.version>
-		<reflectasm.version>1.11.3</reflectasm.version>
 		<basistemplate.version>1.1-SNAPSHOT</basistemplate.version>
 		<jtwig.version>5.87.0.RELEASE</jtwig.version>
 	</properties>
@@ -207,13 +206,6 @@
 			<artifactId>jmustache</artifactId>
 			<version>${jmustache.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.esotericsoftware</groupId>
-			<artifactId>reflectasm</artifactId>
-			<version>${reflectasm.version}</version>
-		</dependency>
-
 	</dependencies>
 
 	<scm>
