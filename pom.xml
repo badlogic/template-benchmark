@@ -23,7 +23,8 @@
 		<junit.version>4.12</junit.version>
 		<trimou.version>1.8.2.Final</trimou.version>
 		<hbs.version>4.0.1</hbs.version>
-		<rocker.version>0.10.3</rocker.version>
+		<rocker.version>0.24.0</rocker.version>
+		<rocker.javaVersion>1.7</rocker.javaVersion>
 		<jmustache.version>1.14</jmustache.version>
 		<reflectasm.version>1.11.3</reflectasm.version>
 		<basistemplate.version>1.1-SNAPSHOT</basistemplate.version>
@@ -34,6 +35,17 @@
 		<repository>
 			<id>jcenter</id>
 			<url>https://jcenter.bintray.com/</url>
+		</repository>
+
+		<repository>
+			<id>snapshots-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 
